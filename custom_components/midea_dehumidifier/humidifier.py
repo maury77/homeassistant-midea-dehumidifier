@@ -3,7 +3,7 @@ Custom integation based on humidifer and sensor platforms for EVA II PRO WiFi Sm
 For more details please refer to the documentation at
 https://github.com/barban-dev/midea_inventor_dehumidifier
 """
-VERSION = '1.0.1'
+VERSION = '1.0.2'
 
 import logging
 from typing import List, Optional
@@ -79,12 +79,14 @@ ATTR_ION_SET_SWITCH = "ion"
 ATTR_FAN_SPEED_MODE = "fan_speed_mode"
 #ATTR_FAN_SPEED = "fan_speed"
 ATTR_CURRRENT_HUMIDITY = "current_humidity"
+ATTR_TANK="tank_show"
 PROP_TO_ATTR = {
     "ionSetSwitch": ATTR_ION_SET_SWITCH,
 	"mode": ATTR_MODE,
     "windSpeedMode": ATTR_FAN_SPEED_MODE,
     "windSpeed": ATTR_FAN_SPEED,
 	"current_humidity": ATTR_CURRRENT_HUMIDITY,
+	    "tank_show":ATTR_TANK
 }
 
 
@@ -252,6 +254,11 @@ class MideaDehumidifierDevice(HumidifierEntity):
     def current_humidity(self):
         """Return the current humidity."""
         return self._humidity
+
+    @property
+    def tank_show(self):
+        """Return the current tank vakue."""
+        return self._tankShow
 
     @property
     def min_humidity(self):
